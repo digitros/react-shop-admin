@@ -1,7 +1,11 @@
 import Header from '@components/Header';
 import Nav from '@common/Nav';
 
-export default function MainLayout({ children }) {
+interface MainLayoutProps {
+  children: React.ReactNode;
+}
+
+export default function MainLayout({ children }: MainLayoutProps) {
   return (
     <>
       <div className="min-h-full">

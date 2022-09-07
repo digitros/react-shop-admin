@@ -2,7 +2,13 @@ import { Fragment, useRef } from 'react';
 import { Dialog, Transition } from '@headlessui/react';
 import { XCircleIcon } from '@heroicons/react/solid';
 
-export default function Modal({ open, setOpen, children }) {
+interface ModalProps {
+  children: React.ReactNode;
+  open: boolean;
+  setOpen: React.Dispatch<React.SetStateAction<boolean>>;
+}
+
+export default function Modal({ open, setOpen, children }: ModalProps) {
   const cancelButtonRef = useRef(null);
   return (
     <Transition.Root show={open} as={Fragment}>
