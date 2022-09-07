@@ -37,8 +37,13 @@ function useProvideAuth() {
       },
       options,
     );
-    if (data.accessToken) {
-      Cookie.set('accessToken', data.accessToken, { expires: 5 });
+    const token = data.access_token;
+    if (token) {
+      Cookie.set('accessToken', token, { expires: 5 });
+      axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+      const { data: user } = await axios.get(endPoints.auth.profile);
+      console.log(user);
+      setUser(user);
     }
   };
   return { user, signIn, error, setError };
